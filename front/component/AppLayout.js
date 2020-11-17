@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import react, {useState, Component} from 'react'
 import PropTypes from 'prop-types'
 import Link from 'next/link';   //next 에서는 react router 를 사용하지 않고 next/link 를 사용한다.
 import {Menu, Row, Col, Input} from 'antd';
@@ -6,6 +6,7 @@ import LoginForm from './LoginForm'
 import UserProfile from './UserProfile';
 //import 'antd/dist/antd.css';
 import styled from 'styled-components'
+import {useSelector} from 'react-redux';
 
 // const SearchInput = styled(Input.Search)`
 //  vertical-align:middle;
@@ -13,10 +14,10 @@ import styled from 'styled-components'
 
 function AppLayout({children}) {
 
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const isLoggedIn = useSelector((state) => state.user.isLoggedIn); //isLoggedIn 값이 변하면 자동으로 갱신된다.
 
     return (
-        <div>
+        <>
             <Menu mode="horizontal">
                 <Menu.Item>
                     <Link href="/"><a>노드버드</a></Link>
@@ -34,7 +35,7 @@ function AppLayout({children}) {
         
             <Row>
                 <Col xs={24} md={6}>
-                    {isLoggedIn ? <UserProfile setIsLoggedIn={setIsLoggedIn}/> : <LoginForm setIsLoggedIn={setIsLoggedIn}/>}
+                    {isLoggedIn ? <UserProfile/> : <LoginForm/>}
                 </Col>
                 <Col xs={24} md={12}>
                     {children}
@@ -42,7 +43,7 @@ function AppLayout({children}) {
                 <Col>
                 </Col>
             </Row>
-        </div>
+        </>
     )
 }
 

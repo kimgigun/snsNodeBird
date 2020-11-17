@@ -2,7 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types';
 import 'antd/dist/antd.css';
 
-function App({Component}) {
+import wrapper from '../store/configureStore'
+
+function Nodebird({Component}) {
     return (
         <>
             <div>공통공통</div>
@@ -11,8 +13,8 @@ function App({Component}) {
     );
 }
 
-App.PropTypes = {
+Nodebird.propTypes = {
     Component: PropTypes.elementType.isRequired
 }
 
-export default App;
+export default wrapper.withRedux(Nodebird);
