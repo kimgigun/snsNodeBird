@@ -5,7 +5,7 @@ import {Menu, Row, Col, Input} from 'antd';
 import LoginForm from './LoginForm'
 import UserProfile from './UserProfile';
 //import 'antd/dist/antd.css';
-import styled from 'styled-components'
+
 import {useSelector} from 'react-redux';
 
 // const SearchInput = styled(Input.Search)`
@@ -14,7 +14,7 @@ import {useSelector} from 'react-redux';
 
 function AppLayout({children}) {
 
-    const isLoggedIn = useSelector((state) => state.user.isLoggedIn); //isLoggedIn 값이 변하면 자동으로 갱신된다.
+    const isLoggedIn = useSelector(state => state.user.isLoggedIn); //isLoggedIn 값이 변하면 자동으로 갱신된다.
 
     return (
         <>
