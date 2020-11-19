@@ -7,6 +7,7 @@ import FollowList from '../component/FollowList.js'
 function profile() {
     const followerList = [{nickname: '김군'}, {nickname:'이군'}, {nickname:'박군'}];
     const followingList = [{nickname: '김군1'}, {nickname:'이군2'}, {nickname:'박군3'}];
+    
     return (
         <>
             <Head>
@@ -15,7 +16,7 @@ function profile() {
             <AppLayout>
                 <NickNameEditForm/>
                 <FollowList header="팔로잉목록" data={followerList}/>
-                <FollowList header="팔로워 목록" data={followingList}/>
+                <FollowList header="팔로워목록" data={followingList}/>
             </AppLayout>
         </>
     )

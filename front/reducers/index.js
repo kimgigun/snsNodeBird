@@ -1,7 +1,7 @@
 import {HYDRATE}  from 'next-redux-wrapper';
 import {combineReducers} from 'redux'; //리듀서를 합쳐준다.
 import user from '../reducers/user';
-import post from '../reducers/user';
+import post from '../reducers/post';
 
 // 리듀서를 합쳐준다
 const rootReducer = combineReducers({
@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
                 return state;    
         }
     },
-    user,post
+    user, post
 });
 
 export default rootReducer;
