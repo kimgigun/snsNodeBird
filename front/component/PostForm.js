@@ -1,6 +1,7 @@
 import {Button, Form} from 'antd';
 import {useSelector, useDispatch} from 'react-redux'
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useState, useRef} from 'react';
+
 import {Input} from 'antd';
 import {addPost} from '../reducers/post'
 
@@ -8,29 +9,35 @@ import {addPost} from '../reducers/post'
 const PostForm = () => {
 
     const {imagePath} = useSelector((state) => state.post);
-    const [text, setText] = useState('');
+    const [content, setContent] = useState('');
     const dispatch = useDispatch();
+    const imageInput = useRef();
 
-    const onChangeText = useCallback((e)=>{
-            setText(e.target.current);
+    const onChangeContent = useCallback((e)=>{
+        setContent(e.target.current);
         },
         []
     );
     const onSubmit = useCallback( () => {
-            dispatch(addPost(text))
+            dispatch(addPost(content));
+            setContent('');
         },
         []
     );
 
+    const onClickImageUpload = useCallback(()=>{
+        imageInput.current.click();
+    },[imageInout.current]);
+
     return (
         <Form style={{matgin:'10px 0 20px'}} encType="multypart/form-data" onFinish={onSubmit}>
             <Input.TextArea 
-            value={text} 
-            onChange={onChangeText}
+            value={content} 
+            onChange={onChangeContent}
             maxLength={140}
-            placeholer={`what's up?`}/>
-            <input type="file" multople-hidden/>
-            <Button> Image upload</Button>
+            placeholer={'what up'}/>
+            <input type="file" multiple hidden ref={imageInput}/>
+            <Button onClick={onClickImageUpload}> Image upload</Button>
             <Button type="primary" style={{float:'right'}} htmlType="onSubmit">zzi</Button>
             <div>
             {imagePath && imagePath.map((v)=>(

@@ -1,9 +1,40 @@
-import React from 'react'
+import { EllipsisOutlined, MessageOutlined, RetweetOutlined, HeartOutlined } from '@ant-design/icons';
+import React from 'react';
+import {Card, Button, Popover, Avatar, Image} from 'antd';
+import PostImages from './PostImage';
+import {useSelector} from 'react-redux';
 
-function PostCard() {
+function PostCard({post}){
+
+    const id = useSelector((state) => state.user.me);
+
     return (
         <div>
-            포스트카드
+            
+            <div>포스트카드</div>
+            <Card
+                cover={post.Images[0] && <PostImages images={post.Images}/>}
+                action={[
+                    <RetweetOutlined key="retweet"/>,
+                    <HeartOutlined key="heart"/>,
+                    <MessageOutlined key="ommnet"/>,
+                    <Popover key="more" content={(
+                        <Button.Group>
+                            <Button>수정</Button>
+                            <Button type="danger">삭제</Button>
+                            <Button>신고</Button>
+                        </Button.Group>
+                    )}>
+                        <EllipsisOutlined/>
+                    </Popover>
+                ]}
+            >
+                <Image/>
+                
+                <Button></Button>
+            </Card>
+            {/* <CommentForm/>
+            <Comments/> */}
         </div>
     )
 }

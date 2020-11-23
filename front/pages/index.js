@@ -9,7 +9,7 @@ import PostForm from '../component/PostForm'
 function Home() {
     const {isLoggedIn} = useSelector((state)=>state.user);
     const {mainPosts} = useSelector((state)=>state.post);
-    
+
     return (
         <>
             <Head>
@@ -17,7 +17,7 @@ function Home() {
             </Head>
             <AppLayout>
                 {isLoggedIn && <PostForm/> }
-                {mainPosts.map((post) => <PostCard key={post.id} post={post}/>)}
+                {mainPosts.map((post, i) => <PostCard key={i} post={post}/>)}
             </AppLayout>
         </>
     )
