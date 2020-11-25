@@ -1,7 +1,6 @@
 import {Button, Form} from 'antd';
 import {useSelector, useDispatch} from 'react-redux'
 import React, {useCallback, useState, useRef} from 'react';
-
 import {Input} from 'antd';
 import {addPost} from '../reducers/post'
 
@@ -27,7 +26,7 @@ const PostForm = () => {
 
     const onClickImageUpload = useCallback(()=>{
         imageInput.current.click();
-    },[imageInout.current]);
+    },[imageInput.current]);
 
     return (
         <Form style={{matgin:'10px 0 20px'}} encType="multypart/form-data" onFinish={onSubmit}>

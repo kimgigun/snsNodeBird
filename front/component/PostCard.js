@@ -6,7 +6,7 @@ import {useSelector} from 'react-redux';
 
 function PostCard({post}){
 
-    const id = useSelector((state) => state.user.me);
+    const id = useSelector((state) => state.user.me? state.user.me.id : state.user.me);
 
     return (
         <div>
@@ -20,18 +20,23 @@ function PostCard({post}){
                     <MessageOutlined key="ommnet"/>,
                     <Popover key="more" content={(
                         <Button.Group>
-                            <Button>수정</Button>
-                            <Button type="danger">삭제</Button>
-                            <Button>신고</Button>
+                            {id && post.User.id === id ? (
+                                <>
+                                    <Button>수정</Button>
+                                    <Button type="danger">삭제</Button>
+                                </>
+                            ) : <Button>신고</Button>}
                         </Button.Group>
                     )}>
                         <EllipsisOutlined/>
                     </Popover>
                 ]}
             >
-                <Image/>
-                
-                <Button></Button>
+                <Card.Meta 
+                    avatar={<Avatar>{post.User.nickname[0]}</Avatar>}>
+                    title={post.nickname}
+                    description={post.content}
+                </Card.Meta>
             </Card>
             {/* <CommentForm/>
             <Comments/> */}
